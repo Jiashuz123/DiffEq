@@ -1,3 +1,9 @@
+'''
+File Name: Euler.py
+Author: Natasha, Sach, Pheonix, Jiashu
+Date: 03/07/2024
+Description: Euler's method function in python
+'''
 from sympy import *
 diffEq = 2*x + y
 #This is the differential Equation
