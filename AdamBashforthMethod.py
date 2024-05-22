@@ -2,7 +2,35 @@
 File Name: AdamBashforthMethod.py
 Author: Natasha, Sach, Pheonix, Jiashu
 Date: April/2024
-Description: AB method function in python
+Description: AB and RK method function in python
+
+The script defines two functions: RK4 and AB.
+
+1. RK4 function:
+  - Inputs:
+    - diffEq: The differential equation in symbolic form.
+    - x0: The initial value of the independent variable (x).
+    - y0: The initial value of the dependent variable (y).
+    - StepSize: The step size for numerical integration.
+    - xf: The final value of the independent variable (x) at which the solution is desired.
+  - This function uses the 4th-order Runge-Kutta method to compute the initial few points required by the AB method.
+  - It returns a list containing the initial conditions and the computed points.
+
+2. AB function:
+  - Inputs:
+    - diffEq: The differential equation in symbolic form.
+    - x0: The initial value of the independent variable (x).
+    - y0: The initial value of the dependent variable (y).
+    - StepSize: The step size for numerical integration.
+    - xf: The final value of the independent variable (x) at which the solution is desired.
+  - This function implements the Adam-Bashforth method to approximate the solution of the ODE.
+  - It first calls the RK4 function to obtain the initial few points required by the AB method.
+  - It then uses the AB formula to predict the next point and iteratively refines the prediction until convergence.
+  - Finally, it returns the converged solution for the next point.
+
+The script also includes an example usage, where it solves the differential equation 2*x*y with the initial conditions x0 = 1, y0 = 1, and step sizes of 0.05 and 0.1.
+
+Note: The script uses the SymPy library for symbolic mathematics, which allows the user to input the differential equation in symbolic form.
 '''
 import math
 from sympy import symbols
