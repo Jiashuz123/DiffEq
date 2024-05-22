@@ -6,34 +6,40 @@ Description: RK4 for second order function
 '''
 from sympy import *
 def RungeKutta4(x0, y0, h, tf):
+    #This function requires 4 inputs: Initial conditions for x and y, the step size, and the final t value
+    #define the original differential equations
     def f(x, y):
         return 2 * x + 4 * y
 
     def g(x, y):
         return -x + 6 * y
 
-    # Exact solution
+    # Exact solution (used to calculate the errors) 
     def x_exact(t):
         return (26 * t - 1) * exp(4 * t)
 
     def y_exact(t):
         return (13 * t + 6) * exp(4 * t)
-
+    #This calculate the total number of iterations and update the x and y values
     iterations = int((tf - t0) / h)
     x_current = x0
     y_current = y0
     t = t0 + h
 
     for i in range(iterations):
+        #This calculate the first slope in the RK4 method
         k1 = h * f(x_current, y_current)
         l1 = h * g(x_current, y_current)
+        #This calculate the second slope in the RK4 method
         k2 = h * f(x_current + k1 / 2, y_current + l1 / 2)
         l2 = h * g(x_current + k1 / 2, y_current + l1 / 2)
+        #This calculate the third slope in the RK4 method
         k3 = h * f(x_current + k2 / 2, y_current + l2 / 2)
         l3 = h * g(x_current + k2 / 2, y_current + l2 / 2)
+        #This calculate the fourth slope in the RK4 method
         k4 = h * f(x_current + k3, y_current + l3)
         l4 = h * g(x_current + k3, y_current + l3)
-
+        #This calculate the y value and x values
         x_next = x_current + (k1 + 2 * k2 + 2 * k3 + k4) / 6
         y_next = y_current + (l1 + 2 * l2 + 2 * l3 + l4) / 6
 
